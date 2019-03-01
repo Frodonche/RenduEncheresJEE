@@ -1,0 +1,31 @@
+﻿Create database :
+- name : encheres
+- user : root
+- pass : pass
+
+-- PEUPLEMENT DES TABLES --
+
+-- Statut Promotions : 
+INSERT INTO statutpromotions (statut, id)
+VALUES
+('statut',1);
+
+-- Promotions :
+INSERT INTO promotions (code,nb,nom,statut)
+ VALUES
+ (null,2,'promo1','statut'),
+ (null,2,'promo2','statut'),
+ (null,2,'promo3','statut');
+
+-- Catégories :
+INSERT INTO categories (nom)
+ VALUES
+ ('vase'),
+ ('cadre'),
+ ('vêtements'),
+ ('meubles');
+ 
+ 
+ 
+ 
+ 
