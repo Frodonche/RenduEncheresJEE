@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+       <h:head>
+           <ui:define name="header">
+                <title>EncheresJEE - Validation inscription</title>
+           </ui:define>
+    </h:head>
+    
+    
+    
+    <h:body>
+        <ui:composition template="layout.xhtml"> 
+            <ui:define name="content">
+                
+                <br/>
+                <br/>
+
+                <div class="container">
+                    <div class="jumbotron">
+                      <h:outputText value="#{inscription.inscrire()}" />    
+                      <br/>
+                      <p>Vous pouvez maintenant vous <a href="./login.xhtml">connecter</a> !</p>
+                    </div>         
+                </div>
+       
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

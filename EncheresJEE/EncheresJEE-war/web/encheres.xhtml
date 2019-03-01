@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:define name="header">
+            <title>EncheresJEE - Mes encheres</title>
+        </ui:define>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="layout.xhtml"> 
+            <ui:define name="content">
+            <br/>
+            <br/>
+            <br/>
+                <div class="col-md-8">
+                    <div class="row">                    
+                        <div class="col-md-4">
+                            <h2>Mes enchères en cours</h2>
+                            <br/>
+                            <ul class="list-group">
+                                <ui:repeat var="ench" value="#{encheres.viewAllNotTerminated()}">            
+                                    <h:form id="suppEnch">
+                                        <li class="list-group-item">Enchère de #{ench.value} € sur #{ench.idArticles.nom}  
+                                        <h:commandButton class="btn btn-primary" action="#{encheres.supprimerEnchere(ench.id)}" value="Supprimer"></h:commandButton>
+                                        </li>
+                                    </h:form>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h2>Mes enchères gagnées</h2>
+                            <br/>
+                            <ul class="list-group">
+                                <ui:repeat var="ench" value="#{encheres.viewAllWon()}">
+                                    <h:form>
+                                    <li class="list-group-item">Enchère gagnée sur #{ench.idArticles.nom}
+                                        <h:commandButton class="btn btn-primary" action="#{senderBean.sendMsgToFacturationQueue(ench.id)}" value="Demande Facturation"></h:commandButton>
+                                        <h:commandButton class="btn btn-primary" action="#{senderBean.sendMsgToLivraisonQueue(ench.id)}" value="Demande Livraison"></h:commandButton>
+                                      
+                                    </li>
+                                    </h:form>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <h2>Mes enchères perdues</h2>
+                            <br/>
+                            <ul class="list-group">
+                                <ui:repeat var="ench" value="#{encheres.viewAllLost()}">
+                                    <li class="list-group-item">Enchère perdue sur #{ench.idArticles.nom}</li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

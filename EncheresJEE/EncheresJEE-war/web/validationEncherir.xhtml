@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <ui:define name="header">
+            <title>EncheresJEE - Validation encherir</title>
+        </ui:define>
+    </h:head>
+
+
+
+    <h:body>
+        <ui:composition template="layout.xhtml"> 
+            <ui:define name="content">
+
+                <br/>
+                <br/>
+                <div class="card" var="art" value="#{articles.getOne()}">
+                    <div class="card-body">
+                        <h5 class="card-title">#{art.nom}</h5>
+                        <p class="card-text">#{art.description}</p>
+                        <p class="card-text">Prix de départ : #{art.prix_init}</p>
+                        <p class="card-text">Prix actuel : #{art.prix_max}</p>
+                        <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
+                        <p class="card-text">Dernier enchérisseur : #{articles.viewNameUserById(art.id_buy_users)}</p>
+                        <c:if test="#{!empty menubar.login}">
+                            <h:form id="Encherir">                                
+                                <label>Encherir de : </label><h:inputText value="#{encherir.valeurActuelle}" />
+                                <h:commandButton class="btn btn-primary" action="#{encherir.encherir(menubar.id)}" value="Encherir"></h:commandButton>
+                            </h:form>
+                        </c:if>
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
